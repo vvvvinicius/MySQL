@@ -52,12 +52,10 @@ select * from tb_personagem where defesa > 1000 and defesa < 2000;
 select * from tb_personagem where nome like "%c%";
 
 -- select com inner join entre tabela classe e personagem
-select tb_personagem.nome, tb_personagem.ataque, tb_personagem.defesa, tb_classe.tipo, tb_classe.fraquezas
-from tb_personagem inner join tb_classe
+select * from tb_personagem inner join tb_classe
 on tb_classe.id = tb_personagem.categoria_id;
 
 -- select onde traga todos os personagem de uma classe específica
-select tb_personagem.nome, tb_personagem.ataque, tb_personagem.defesa, tb_classe.tipo, tb_classe.fraquezas
-from tb_personagem inner join tb_classe
-on tb_classe.id = tb_personagem.categoria_id;
-where tb_personagem.id = 4;
+select * from tb_personagem inner join tb_classe
+on tb_classe.id = tb_personagem.categoria_id
+where tb_classe.id = 1;
