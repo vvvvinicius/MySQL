@@ -50,22 +50,26 @@ select * from tb_produtos;
 -- ordenando com ordem alfabética, de A pra Z
 select * from tb_produtos order by nome;
 
--- ordenando com ordem alfabética, o DESC faz ser de de Z pra A
+-- ordenando com ordem alfabética, o DESC representa decrescente e faz ser de de Z pra A
 select * from tb_produtos order by nome DESC;
 
--- ordenando duas colunas, separa por vírgula
+-- ordenando duas colunas de forma decrescente, separa por vírgula para funcionar
 select * from tb_produtos order by nome, preco DESC;
 
 -- AND, OR e NOT para operações lógicas 
--- AND = vai trazer resultado se as duas condições foram válidas
+-- AND = vai trazer resultado se as duas condições forem válidas
 -- OR = vai trazer resultado se uma das condições for válida
--- NOT = excluir do resultado 
+-- NOT = excluir do resultado
+
 select * from tb_produtos where preco > 20 and categoria_id = 1;
+-- exemplo do uso de and, para considerar as duas condições
 
 -- IN e BETWEEN 
 -- dispensa o uso de uma linha grande
+
 -- in = define qual item queremos exibir
 -- between = define o intervalo para exibir
+
 select * from tb_produtos where preco in (20, 30, 40);
 -- o in no uso acima vai trazer os preços onde o produto é 20, 30 ou 40, ou seja, substitui o OR
 
@@ -73,34 +77,35 @@ select * from tb_produtos where preco between 20 and 40;
 -- o uso do between a cima vai trazer os preços onde o produto é 20 e 40
 
 -- % indica qualquer texto, é um caracter coringa
--- exemplo ha% - vai buscar em todo o banco de dados as palavras que COMEÇAM com ha e o restane do texto se completa com %, ou seja, a regra é: inicia com ha
--- exemplo %ha - vai buscar em todo o banco de dados as palavras que TERMINAM com ha e o início do texto se completa com %, ou seja, a regra é: termina com ha
--- exemplo %ha% - vai buscar em todo o banco de dados as palavras que CONTÉM ha, independente do início, meio ou fim da palavra
+-- exemplo ha% - vai buscar em todo o banco de dados as palavras que COMEÇAM com "ha" e o restane do texto se completa com %, ou seja, a regra é: inicia com "ha"
+-- exemplo %ha - vai buscar em todo o banco de dados as palavras que TERMINAM com "ha" e o início do texto se completa com %, ou seja, a regra é: termina com "ha"
+-- exemplo %ha% - vai buscar em todo o banco de dados as palavras que CONTÉM "ha", independente do início, meio ou fim da palavra
 
 -- like
 select * from tb_produtos where nome like "%ha";
--- resultado é picanha, pois é o único produto que trermina com ha
+-- resultado é picanha, pois é o único produto que termina com "ha"
 
 select * from tb_produtos where nome like "ha%";
--- resultado é hamburguer, pois é o único que começa com ha
+-- resultado é hamburguer, pois é o único que começa com "ha"
 
 select * from tb_produtos where nome like "%ha%";
--- resultado é picanha, hamburguer, orelha de porco e medalhão, pois todas tem o ha em algum local da palavra
+-- resultado é picanha, hamburguer, orelha de porco e medalhão, pois todas têm o "ha" em alguma posição da palavra
 
--- MATEMÁTICA
+-- MATEMÁTICA -- 
 
 -- COUNT = conta coisas
+
 select count(*) from tb_produtos;
 -- o resultado é 14, o número total de produtos
 
 select count(categoria_id) from tb_produtos;
 -- resultado é 12, pois dois produtos estão sem categoria
 
--- SUM = soma as coisas
+-- SUM = soma
 select sum(preco) from tb_produtos;
 -- resultado é 398, pois é a soma total dos preços dos produtos
 
--- AVG = tira uma média
+-- AVG = média
 select avg(preco) from tb_produtos;
 -- resultado é 28.428571, pois é a soma de todos os produtos dividido pela quantidade de itens
 
@@ -129,6 +134,7 @@ select max(preco) as Maior_Preço from tb_produtos;
  -- tabela com chave primária fica do lado direito
  
  -- prática -- 
+
  -- inner join
  select tb_produtos.nome, tb_produtos.preco, tb_categoria.descricao 
  -- selecionando nome, preço e descrição da tabela produtos
