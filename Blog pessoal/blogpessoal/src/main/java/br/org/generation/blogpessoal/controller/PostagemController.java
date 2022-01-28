@@ -22,7 +22,7 @@ import br.org.generation.blogpessoal.repository.PostagemRepository;
 
 @RestController
 @RequestMapping("/postagens")
-@CrossOrigin(origins = "*", allowedHeaders = "*") // o * vai liberar acesso para qualquer origem mas é onde o endereço do front-end ficará
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PostagemController {
 
 	@Autowired
@@ -30,10 +30,10 @@ public class PostagemController {
 	
 	@GetMapping
 	public ResponseEntity <List<Postagem>> getAll(){
-		return ResponseEntity.ok(postagemRepository.findAll()); // encontrará todo conteúdo de postagem
+		return ResponseEntity.ok(postagemRepository.findAll());
 	}
 	
-	@GetMapping("/{id}") // não é possível usar dois métodos, precisa "personalizar" - criando a variável ID - variável de caminho e ficará /postagens/(número do id)
+	@GetMapping("/{id}")
 	public ResponseEntity <Postagem> GetById(@PathVariable Long id){
 		return postagemRepository.findById(id)
 				.map(resposta -> ResponseEntity.ok(resposta))
